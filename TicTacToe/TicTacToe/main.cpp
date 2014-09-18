@@ -85,7 +85,37 @@ bool MoveIsValid(int board[BOARD_SIZE][BOARD_SIZE], int row, int col) {
 }
 
 int checkForWinner(int board[BOARD_SIZE][BOARD_SIZE]) {
-	//check rows
-	//check coloumns 
-	//check diags
+	int winR = 0, winC = 0, winD1 = 0, winD2 = 0;
+
+	//check rows... and Col?
+	for(int r = 0; r < BOARD_SIZE; r++) {
+		winR = 0, winC = 0;
+		for(int c = 0; c < BOARD_SIZE; c++) { 
+			winR += board[r][c];
+			winC += board[c][r];
+		}
+		if(winR == 3 || winC == 3)
+			return 1;
+		else if (winR == -3 || winC == -3)
+			return -1;
+
+	}
+	//check diag1
+	for(int d1 = 0; d1 < BOARD_SIZE; d1++) {
+		winD1 += board[d1][d1];
+	}
+	//check for diag2
+	int d3 = 0;
+	for(int d2 = 2; d2 > -1; d2--) {
+		winD2 += board[d2][d3];
+		d3++;
+	}
+
+
+	if(winD1 == 3 || winD2 == 3) 
+		return 1;
+	else if(winD1 == -3 || winD2 == -3) 
+		return -1;
+	else
+		return 0;
 }
