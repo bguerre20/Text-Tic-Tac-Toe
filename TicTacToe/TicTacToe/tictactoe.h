@@ -1,6 +1,6 @@
 // PrintBoard takes a 2-dimensional array parameter representing the game state
 // and prints it to cout. See the spec for details on formatting the output.
-void PrintBoard(char board[3][3]);
+void PrintBoard(int board[3][3]);
 
 // GetMove uses cin to read the user's choice for where to move next on the 
 // board. It does NOT update the game board with the move choice; it simply
