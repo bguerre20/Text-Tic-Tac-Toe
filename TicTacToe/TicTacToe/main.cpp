@@ -12,26 +12,36 @@ int main(int argc, char* argv[]) {
 	PrintBoard(board);
 	int row = 0, col = 0;
 
+	//Game loop for 9 turns as instructed by the project parameters.
 	for(int i = 1; i < 9; i++) {
-
-		//2. Ask for move 
-		if(i%2 == 1)
-			cout<<"X's turn: ";
-		else
-			cout<<"O's turn: ";
-		GetMove(&row, &col);
-
-		//3. Verify the move, update if valid, ask again if not.
-		if(MoveIsValid(board, row, col)) {
-			if(i%2 == 1)
-				board[row][col] = 1;
-			else
-				board[row][col] = -1;
-			PrintBoard(board);
+		if(checkForWinner(board) == 1) {
+			cout<<"X WINS!!!"<<endl;
+			break;
+		}
+		else if(checkForWinner(board) == -1) {
+			cout<<"O WINS!!!"<<endl;
+			break;
 		}
 		else {
-			cout<<"Can't go there! Pick somewhere else please."<<endl;
-			i--;
+			//2. Ask for move, use mod to determine who's move it is.
+			if(i%2 == 1)
+				cout<<"X's turn: ";
+			else
+				cout<<"O's turn: ";
+			GetMove(&row, &col);
+
+			//3. Verify the move, update if valid, ask again if not.
+			if(MoveIsValid(board, row, col)) {
+				if(i%2 == 1)
+					board[row][col] = 1;
+				else
+					board[row][col] = -1;
+				PrintBoard(board);
+			}
+			else {
+				cout<<"Can't go there! Pick somewhere else please."<<endl;
+				i--;
+			}
 		}
 	}
 }
@@ -72,4 +82,10 @@ bool MoveIsValid(int board[BOARD_SIZE][BOARD_SIZE], int row, int col) {
 		return false;
 	else
 		return true;
+}
+
+int checkForWinner(int board[BOARD_SIZE][BOARD_SIZE]) {
+	//check rows
+	//check coloumns 
+	//check diags
 }
