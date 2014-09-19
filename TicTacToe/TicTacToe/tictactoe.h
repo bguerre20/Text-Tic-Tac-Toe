@@ -1,6 +1,6 @@
 // PrintBoard takes a 2-dimensional array parameter representing the game state
 // and prints it to cout. See the spec for details on formatting the output.
-void PrintBoard(int board[3][3]);
+void PrintBoard(char board[3][3]);
 
 // GetMove uses cin to read the user's choice for where to move next on the 
 // board. It does NOT update the game board with the move choice; it simply
@@ -12,7 +12,7 @@ void GetMove(int *row, int *col);
 // MoveIsValid returns true if the board is empty at the requested row/col,
 // and false otherwise. Used in main to see if the move is valid and alert
 // the user if it is not.
-bool MoveIsValid(int board[3][3], int row, int col);
+bool MoveIsValid(char board[3][3], int row, int col);
 
 //This function loops through the board and checks to see if anyone has won
-int checkForWinner(int board[3][3]);
+int checkForWinner(char board[3][3]);

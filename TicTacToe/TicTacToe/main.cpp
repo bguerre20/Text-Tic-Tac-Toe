@@ -5,15 +5,16 @@
 
 using namespace std;
 const int BOARD_SIZE = 3;
+const int ALL_POSSIBLE_MOVES = 9;
 
 int main(int argc, char* argv[]) {
 	//initial print out of board
-	int board[BOARD_SIZE][BOARD_SIZE] = {0};
+	char board[BOARD_SIZE][BOARD_SIZE] = {0};
 	PrintBoard(board);
 	int row = 0, col = 0;
 
 	//Game loop for 9 turns as instructed by the project parameters.
-	for(int i = 1; i < 9; i++) {
+	for(int i = 1; i < ALL_POSSIBLE_MOVES + 1; i++) {
 		if(checkForWinner(board) == 1) {
 			cout<<"X WINS!!!"<<endl;
 			break;
@@ -48,7 +49,7 @@ int main(int argc, char* argv[]) {
 
 //Print out the first line, then nested loop to print out each board spot, leading 
 // with the counter for each row.
-void PrintBoard(int board[BOARD_SIZE][BOARD_SIZE]) {
+void PrintBoard(char board[BOARD_SIZE][BOARD_SIZE]) {
 	cout<<"- 0 1 2"<<endl;
 
 	for(int i = 0; i < BOARD_SIZE; i++) { 
@@ -77,14 +78,11 @@ void GetMove(int *row, int *col) {
 }
 
 //checks all invalid input errors, returns true if move is fine, false if not.
-bool MoveIsValid(int board[BOARD_SIZE][BOARD_SIZE], int row, int col) {
-	if(board[row][col] != 0 || row > 3 || row < 0 || col > 3 || col < 0)
-		return false;
-	else
-		return true;
+bool MoveIsValid(char board[BOARD_SIZE][BOARD_SIZE], int row, int col) {
+	return(board[row][col] != 0 || row > 3 || row < 0 || col > 3 || col < 0);
 }
 
-int checkForWinner(int board[BOARD_SIZE][BOARD_SIZE]) {
+int checkForWinner(char board[BOARD_SIZE][BOARD_SIZE]) {
 	int winR = 0, winC = 0, winD1 = 0, winD2 = 0;
 
 	//check rows... and Col?
